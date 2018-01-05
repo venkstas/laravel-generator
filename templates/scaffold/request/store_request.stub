@@ -1,0 +1,20 @@
+<?php
+
+namespace $NAMESPACE_REQUEST$;
+
+use Illuminate\Foundation\Http\FormRequest;
+use $NAMESPACE_MODEL$\$MODEL_NAME$;
+
+class Store$MODEL_NAME$Request extends Create$MODEL_NAME$Request
+{
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules()
+    {
+        return $MODEL_NAME$::$rulesStore;
+    }
+}
