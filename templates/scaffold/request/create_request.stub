@@ -4,6 +4,7 @@ namespace $NAMESPACE_REQUEST$;
 
 use Illuminate\Foundation\Http\FormRequest;
 use $NAMESPACE_MODEL$\$MODEL_NAME$;
+use Auth;
 
 class Create$MODEL_NAME$Request extends FormRequest
 {
@@ -15,16 +16,7 @@ class Create$MODEL_NAME$Request extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return  Auth::user()->can('create-$MODEL_NAME$');
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
-    public function rules()
-    {
-        return $MODEL_NAME$::$rules;
-    }
 }

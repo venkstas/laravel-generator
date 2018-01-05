@@ -30,9 +30,18 @@ $PRIMARY$
      *
      * @var array
      */
-    public static $rules = [
+    public static $rulesStore = [
         $RULES$
     ];
+
+    /**
+         * Validation rules
+         *
+         * @var array
+         */
+        public static $rulesUpdate = [
+            $RULES$
+        ];
 
     $RELATIONS$
 }

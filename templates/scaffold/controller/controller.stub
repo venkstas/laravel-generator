@@ -2,8 +2,12 @@
 
 namespace $NAMESPACE_CONTROLLER$;
 
+use $NAMESPACE_REQUEST$\Read$MODEL_NAME$Request;
 use $NAMESPACE_REQUEST$\Create$MODEL_NAME$Request;
+use $NAMESPACE_REQUEST$\Store$MODEL_NAME$Request;
+use $NAMESPACE_REQUEST$\Edit$MODEL_NAME$Request;
 use $NAMESPACE_REQUEST$\Update$MODEL_NAME$Request;
+use $NAMESPACE_REQUEST$\Delete$MODEL_NAME$Request;
 use $NAMESPACE_REPOSITORY$\$MODEL_NAME$Repository;
 use $NAMESPACE_APP$\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
@@ -27,7 +31,7 @@ class $MODEL_NAME$Controller extends AppBaseController
      * @param Request $request
      * @return Response
      */
-    public function index(Request $request)
+    public function index(Read$MODEL_NAME$Request $request)
     {
         $this->$MODEL_NAME_CAMEL$Repository->pushCriteria(new RequestCriteria($request));
         $$MODEL_NAME_PLURAL_CAMEL$ = $this->$MODEL_NAME_CAMEL$Repository->$RENDER_TYPE$;
@@ -41,7 +45,7 @@ class $MODEL_NAME$Controller extends AppBaseController
      *
      * @return Response
      */
-    public function create()
+    public function create(Create$MODEL_NAME$Request $request)
     {
         return view('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.create');
     }
@@ -53,7 +57,7 @@ class $MODEL_NAME$Controller extends AppBaseController
      *
      * @return Response
      */
-    public function store(Create$MODEL_NAME$Request $request)
+    public function store(Store$MODEL_NAME$Request $request)
     {
         $input = $request->all();
 
@@ -71,7 +75,7 @@ class $MODEL_NAME$Controller extends AppBaseController
      *
      * @return Response
      */
-    public function show($id)
+    public function show(Read$MODEL_NAME$Request $request, $id)
     {
         $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Repository->findWithoutFail($id);
 
@@ -91,7 +95,7 @@ class $MODEL_NAME$Controller extends AppBaseController
      *
      * @return Response
      */
-    public function edit($id)
+    public function edit(Edit$MODEL_NAME$Request $request, $id)
     {
         $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Repository->findWithoutFail($id);
 
@@ -136,7 +140,7 @@ class $MODEL_NAME$Controller extends AppBaseController
      *
      * @return Response
      */
-    public function destroy($id)
+    public function destroy(Delete$MODEL_NAME$Request $request, $id)
     {
         $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Repository->findWithoutFail($id);
 
