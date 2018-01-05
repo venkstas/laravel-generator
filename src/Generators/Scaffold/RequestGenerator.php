@@ -72,10 +72,10 @@ class RequestGenerator extends BaseGenerator
 
         $templateData = fill_template($this->commandData->dynamicVars, $templateData);
 
-        FileUtil::createFile($this->path, $this->readFileName, $templateData);
+        FileUtil::createFile($this->path, $this->createFileName, $templateData);
 
         $this->commandData->commandComment("\nCreate Request created: ");
-        $this->commandData->commandInfo($this->readFileName);
+        $this->commandData->commandInfo($this->createFileName);
     }
 
     private function generateStoreRequest()
