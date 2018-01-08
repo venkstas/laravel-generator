@@ -19,4 +19,16 @@ class Create$MODEL_NAME$Request extends FormRequest
         return  Auth::user()->can('create-$MODEL_NAME$');
     }
 
+    /**
+         * Get the validation rules that apply to the request.
+         *
+         * @return array
+         */
+        public function rules()
+        {
+            return [
+                //
+            ];
+        }
+
 }

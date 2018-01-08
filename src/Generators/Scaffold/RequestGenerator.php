@@ -5,7 +5,7 @@ namespace InfyOm\Generator\Generators\Scaffold;
 use InfyOm\Generator\Common\CommandData;
 use InfyOm\Generator\Generators\BaseGenerator;
 use InfyOm\Generator\Utils\FileUtil;
-use Laratrust\Models\LaratrustPermission;
+use App\Models\Permission;
 
 class RequestGenerator extends BaseGenerator
 {
@@ -58,16 +58,16 @@ class RequestGenerator extends BaseGenerator
 
     private function generateLaraTrustPermissions()
     {
-        $readPermission = LaratrustPermission::firstOrCreate(
+        $readPermission = Permission::firstOrCreate(
             ['name' => 'read-' . $this->commandData->modelName], ['display_name' => 'Read ' . $this->commandData->modelName], ['description' => 'Read ' . $this->commandData->modelName]
         );
-        $createPermission = LaratrustPermission::firstOrCreate(
+        $createPermission = Permission::firstOrCreate(
             ['name' => 'create-' . $this->commandData->modelName], ['display_name' => 'Create ' . $this->commandData->modelName], ['description' => 'Create ' . $this->commandData->modelName]
         );
-        $updatePermission = LaratrustPermission::firstOrCreate(
+        $updatePermission = Permission::firstOrCreate(
             ['name' => 'update-' . $this->commandData->modelName], ['display_name' => 'Update ' . $this->commandData->modelName], ['description' => 'Update ' . $this->commandData->modelName]
         );
-        $deletePermission = LaratrustPermission::firstOrCreate(
+        $deletePermission = Permission::firstOrCreate(
             ['name' => 'delete-' . $this->commandData->modelName], ['display_name' => 'Delete ' . $this->commandData->modelName], ['description' => 'Delete ' . $this->commandData->modelName]
         );
     }
