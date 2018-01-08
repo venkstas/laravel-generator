@@ -15,6 +15,6 @@ class Store$MODEL_NAME$Request extends Create$MODEL_NAME$Request
      */
     public function rules()
     {
-        return $MODEL_NAME$::$rulesStore;
+        return $MODEL_NAME$::$rulesCreate;
     }
 }

@@ -3,11 +3,13 @@
 namespace $NAMESPACE_MODEL$;
 
 use $NAMESPACE_MODEL_EXTEND$ as Model;
+use Spatie\Activitylog\Traits\LogsActivity;
 $SOFT_DELETE_IMPORT$
 $DOCS$
 class $MODEL_NAME$ extends Model
 {
-$SOFT_DELETE$
+    use LogsActivity;
+ $SOFT_DELETE$
     public $table = '$TABLE_NAME$';
     $TIMESTAMPS$
 $SOFT_DELETE_DATES$
@@ -25,12 +27,14 @@ $PRIMARY$
         $CAST$
     ];
 
+    protected static $logAttributes = ['*'];
+
     /**
      * Validation rules
      *
      * @var array
      */
-    public static $rulesStore = [
+    public static $rulesCreate = [
         $RULES$
     ];
 

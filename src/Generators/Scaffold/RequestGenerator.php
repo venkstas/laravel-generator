@@ -5,6 +5,7 @@ namespace InfyOm\Generator\Generators\Scaffold;
 use InfyOm\Generator\Common\CommandData;
 use InfyOm\Generator\Generators\BaseGenerator;
 use InfyOm\Generator\Utils\FileUtil;
+use Laratrust\Models\LaratrustPermission;
 
 class RequestGenerator extends BaseGenerator
 {
@@ -36,12 +37,12 @@ class RequestGenerator extends BaseGenerator
     {
         $this->commandData = $commandData;
         $this->path = $commandData->config->pathRequest;
-        $this->readFileName = 'Read'.$this->commandData->modelName.'Request.php';
-        $this->createFileName = 'Create'.$this->commandData->modelName.'Request.php';
-        $this->storeFileName = 'Store'.$this->commandData->modelName.'Request.php';
-        $this->editFileName = 'Edit'.$this->commandData->modelName.'Request.php';
-        $this->updateFileName = 'Update'.$this->commandData->modelName.'Request.php';
-        $this->deleteFileName = 'Delete'.$this->commandData->modelName.'Request.php';
+        $this->readFileName = 'Read' . $this->commandData->modelName . 'Request.php';
+        $this->createFileName = 'Create' . $this->commandData->modelName . 'Request.php';
+        $this->storeFileName = 'Store' . $this->commandData->modelName . 'Request.php';
+        $this->editFileName = 'Edit' . $this->commandData->modelName . 'Request.php';
+        $this->updateFileName = 'Update' . $this->commandData->modelName . 'Request.php';
+        $this->deleteFileName = 'Delete' . $this->commandData->modelName . 'Request.php';
     }
 
     public function generate()
@@ -52,6 +53,23 @@ class RequestGenerator extends BaseGenerator
         $this->generateEditRequest();
         $this->generateUpdateRequest();
         $this->generateDeleteRequest();
+        $this->generateLaraTrustPermissions();
+    }
+
+    private function generateLaraTrustPermissions()
+    {
+        $readPermission = LaratrustPermission::firstOrCreate(
+            ['name' => 'read-' . $this->commandData->modelName], ['display_name' => 'Read ' . $this->commandData->modelName], ['description' => 'Read ' . $this->commandData->modelName]
+        );
+        $createPermission = LaratrustPermission::firstOrCreate(
+            ['name' => 'create-' . $this->commandData->modelName], ['display_name' => 'Create ' . $this->commandData->modelName], ['description' => 'Create ' . $this->commandData->modelName]
+        );
+        $updatePermission = LaratrustPermission::firstOrCreate(
+            ['name' => 'update-' . $this->commandData->modelName], ['display_name' => 'Update ' . $this->commandData->modelName], ['description' => 'Update ' . $this->commandData->modelName]
+        );
+        $deletePermission = LaratrustPermission::firstOrCreate(
+            ['name' => 'delete-' . $this->commandData->modelName], ['display_name' => 'Delete ' . $this->commandData->modelName], ['description' => 'Delete ' . $this->commandData->modelName]
+        );
     }
 
     private function generateReadRequest()
@@ -129,27 +147,27 @@ class RequestGenerator extends BaseGenerator
     public function rollback()
     {
         if ($this->rollbackFile($this->path, $this->readFileName)) {
-            $this->commandData->commandComment('Read API Request file deleted: '.$this->readFileName);
+            $this->commandData->commandComment('Read API Request file deleted: ' . $this->readFileName);
         }
 
         if ($this->rollbackFile($this->path, $this->createFileName)) {
-            $this->commandData->commandComment('Create API Request file deleted: '.$this->createFileName);
+            $this->commandData->commandComment('Create API Request file deleted: ' . $this->createFileName);
         }
 
         if ($this->rollbackFile($this->path, $this->storeFileName)) {
-            $this->commandData->commandComment('Store API Request file deleted: '.$this->storeFileName);
+            $this->commandData->commandComment('Store API Request file deleted: ' . $this->storeFileName);
         }
 
         if ($this->rollbackFile($this->path, $this->editFileName)) {
-            $this->commandData->commandComment('Edit API Request file deleted: '.$this->editFileName);
+            $this->commandData->commandComment('Edit API Request file deleted: ' . $this->editFileName);
         }
 
         if ($this->rollbackFile($this->path, $this->updateFileName)) {
-            $this->commandData->commandComment('Update API Request file deleted: '.$this->updateFileName);
+            $this->commandData->commandComment('Update API Request file deleted: ' . $this->updateFileName);
         }
 
         if ($this->rollbackFile($this->path, $this->deleteFileName)) {
-            $this->commandData->commandComment('Delete API Request file deleted: '.$this->deleteFileName);
+            $this->commandData->commandComment('Delete API Request file deleted: ' . $this->deleteFileName);
         }
     }
 }

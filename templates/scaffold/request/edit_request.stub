@@ -16,7 +16,7 @@ class Edit$MODEL_NAME$Request extends FormRequest
      */
     public function authorize()
     {
-        return  Auth::user()->can('edit-$MODEL_NAME$');
+        return  Auth::user()->can('update-$MODEL_NAME$');
     }
 
 }
