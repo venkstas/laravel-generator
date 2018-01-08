@@ -5,7 +5,7 @@ namespace InfyOm\Generator\Generators\Scaffold;
 use InfyOm\Generator\Common\CommandData;
 use InfyOm\Generator\Generators\BaseGenerator;
 use InfyOm\Generator\Utils\FileUtil;
-use Laratrust\Models\LaratrustPermission;
+use App\Models\Permission;
 
 class RequestGenerator extends BaseGenerator
 {
